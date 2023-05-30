@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = "http://localhost:5000"
+const baseUrl = "https://fullstack-todo-app-rcob.onrender.com"
 
 const getAllToDo = (setToDo) => {
     axios
@@ -35,4 +35,15 @@ const updateToDo = (toDoId, text, setToDo, setText, setIsUpdating) => {
     .catch((err) => console.log(err))
 }
 
-export {getAllToDo, addToDo, updateToDo}
+const deleteToDo = (_id, setToDo) => {
+    
+    axios
+    .post(`${baseUrl}/delete`, {_id})
+    .then((data) => {
+        console.log(data)
+        getAllToDo(setToDo)
+    })
+    .catch((err) => console.log(err))
+}
+
+export {getAllToDo, addToDo, updateToDo, deleteToDo}
